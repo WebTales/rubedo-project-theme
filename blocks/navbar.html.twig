@@ -1,24 +1,48 @@
-{% extends "root/blocks/navbar.html.twig" %} 
-
-{% block mainContent %}
+{% extends "root/blocks/navbar.html.twig" %} {% block mainContent %}
 	
-	<!--mobile collapse menu button-->
-	<a class="btn btn-navbar pull-left" data-toggle="collapse"
-		data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-		class="icon-bar"></span> <span class="icon-bar"></span> <span
-		class="icon-bar"></span>
-	</a>
-
-
 	<!--everything within this div is collapsed on mobile-->
 	<div class="nav-collapse collapse">
-
+	
 		<!--main navigation-->
 		<ul class="nav" id="main-menu">
-			<li class="home-link"><a href="/"><i
-					class="icon-home hidden-phone"></i><span class="visible-phone">Accueil</span></a></li>
+			<li class="home-link">
+				<a href="/"><i class="icon-home hidden-phone"></i><span class="visible-phone">Accueil</span></a>
+			</li>
 		</ul>
+		
+		<ul class="nav">
+			{% for page in pages %}
+			<li id="menu-item-{{page.id}}"
+				class="{% if page.id in rootline %}active{% endif %} {% if page.pages %}dropdown{% endif %}">
+				<a 
+				    {% if page.pages %}class="dropdown-toggle" data-toggle="dropdown" data-target="#"{% endif %}
+				    href="{{page.url}}">{{page.title}}{% if page.pages %} <b class="caret"></b>{% endif %}</a> 
+				{% if page.pages %}
+				 <ul class="dropdown-menu">
+				    <li
+						class="{% if page.id==currentPage %}active{% endif %}">
+				    <a href="{{page.url}}">{{page.title}}</a>
+				    </li>
+				    <li class="divider"></li>
+					{% for subpage in page.pages %}
+					<li
+						class="{% if subpage.id in rootline %}active{% endif %}">
+						<a href="{{subpage.url}}">{{subpage.title}}</a>
+					</li> {% endfor %}
 
+				</ul> {% endif %}
+			</li> {% endfor %}
+		</ul>
+	
 	</div>
-
-{% endblock %}
+	
+	{% if useSearchEngine and searchPage %}
+	<!-- search component-->
+	<form class="navbar-search pull-right" action="{{ url({'pageId':searchPage},true) }}">
+		<input type="text" class="input-medium search-query" name="query" placeholder="{{"search"|trans}}">
+		<button type="submit" class="btn btn-search">
+			<i class="icon-search"></i>
+		</button>
+	</form>
+	<!-- /search component-->
+{% endif %} {% endblock %}
