@@ -1,0 +1,30 @@
+{% extends "root/blocks/carrousel.html.twig" %} {% block mainContent %}
+
+
+			<div class="flexslider" data-slidernav="auto" data-transition="slide">
+				<!--The Slides-->
+				<div class="slides">
+								
+					{% for slide in items %} 
+						{% if (loop.index - 1) % 5 == 0 or loop.first %}
+							<div class="slide row-fluid">
+								<div class="block features">
+									<ul class="thumbnails">
+						{% endif %} 
+										<li class="span2 {% if loop.first or (loop.index-1) % 5 == 0 %} offset1 {% endif %}">
+											<a href="#" target="blank"> 
+												<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" />
+											</a>
+										</li> 
+						{% if loop.index % 5 ==0 or loop.last %}
+									</ul>
+								</div>
+							</div>
+						{% endif %} 
+					{% endfor %}
+							
+
+				</div>
+			</div>
+
+{% endblock %}

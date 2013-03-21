@@ -1,0 +1,29 @@
+{% extends "root/blocks/carrousel.html.twig" %} 
+
+{% block mainContent %}
+
+		<div class="inner">
+			<!--Flexslider Showshow-->
+			<section class="flexslider-wrapper container">
+				<div class="flexslider" data-slidernav="auto" data-transition="slide">
+					<!--The Slides-->
+					<div class="slides">
+						
+						{% for slide in items %}
+							<div class="slide row-fluid" >
+								<div class="span7">
+									<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" />
+								</div>
+								<div class="span5 caption">
+									<h2>{{slide.title}}</h2>
+									{{slide.body | cleanHtml}}
+								</div>
+							</div>
+						{% endfor %}
+	
+					</div>
+				</div>
+			</section>
+		</div>
+
+{% endblock %}
