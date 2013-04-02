@@ -18,7 +18,7 @@
 	{% block mainList %} 
 		<ul class="thumbnails">
 			{% for content in data %}
-				<li class="span3 entry-content editable" id="{{ content.id }}_body">{{ content.body | cleanHtml }}</li>
+				<li class="span3"><div class="editable" id="{{ content.id }}_body">{{ content.body | cleanHtml }}</div></li>
 			{% endfor %}
 		</ul>
 	{% endblock %}
