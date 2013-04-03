@@ -1,0 +1,11 @@
+{% extends "root/blocks/contentlist.html.twig" %} 
+	{% block mainContent %}
+		{% block mainList %}
+			{% for content in data %}
+				<div class="well">
+					<h3 class="title editable" id="{{ content.id }}_title">{{ content.title }}</h3>
+					<div class="editable" id="{{ content.id }}_body">{{ content.body | cleanHtml }}</div>
+				</div>
+			{% endfor %}
+		{% endblock %}
+{% endblock %}
