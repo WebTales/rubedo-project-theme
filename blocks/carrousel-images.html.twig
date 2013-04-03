@@ -12,7 +12,7 @@
 									<ul class="thumbnails">
 						{% endif %} 
 										<li class="span2 {% if loop.first or (loop.index-1) % 5 == 0 %} offset1 {% endif %}">
-											<a href="#" target="blank"> 
+											<a href="{{ slide.url }}" target="blank"> 
 												<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" />
 											</a>
 										</li> 
