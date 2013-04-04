@@ -113,3 +113,7 @@ body #navigation .navbar-inner {
 	text-align: center;
 	font-size: 14px;
 }
+
+.flex-direction-nav li a {
+	font-size: 0px !important;
+}
