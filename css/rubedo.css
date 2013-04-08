@@ -117,3 +117,13 @@ body #navigation .navbar-inner {
 .flex-direction-nav li a {
 	font-size: 0px !important;
 }
+
+.mailinglist-modal {
+	width: 196px;
+	border: 1px solid #000;
+	padding: 10px;
+	display: none;
+	color: #fff;
+	border-radius: 10px;
+	text-align: center;
+}
