@@ -127,3 +127,10 @@ body #navigation .navbar-inner {
 	border-radius: 10px;
 	text-align: center;
 }
+
+.form-actions {
+	background: #fff;
+	border-top: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
