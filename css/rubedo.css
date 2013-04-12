@@ -162,3 +162,8 @@ body #navigation .navbar-inner {
 .form-horizontal, .form-actions {
 	margin-bottom: 0 !important;
 }
+
+
+.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
+	background-color: #DDD !important;
+}

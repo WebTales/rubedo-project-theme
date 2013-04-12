@@ -1,0 +1,22 @@
+<ul id="calendar-items-{{ caldate }}" class="nav nav-tabs nav-stacked active">
+	{% for content in data %}
+	<li>
+	<a href="{{ displaySingleUrl(content.id,null,singlePage) }}">
+	    
+	    <div class="pull-left">
+	        {% if content.image %}
+	        <img alt=""
+			class="img-rounded"
+			src="/dam?media-id={{content.image}}&amp;width=100&amp;height=60&amp;mode=crop" />
+			{% endif %}
+	    </div>
+		
+       <div style="padding-left: 8em;"><strong>{{ content.title }}</strong>
+		    <div class="pull-rigth" style="color:black;"><em>{{ content.readDate }}</em></div>
+		</div> 
+		<div class="clearfix"></div>
+	</a>		
+	</li>
+	    		
+	 {% endfor %}
+</ul>
