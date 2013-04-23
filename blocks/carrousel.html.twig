@@ -12,7 +12,7 @@
 						{% for slide in items %}
 							<div class="slide row-fluid" >
 								<div class="span7">
-									<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" />
+									<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" onclick="callModal({% if slide.image %}'/dam?media-id={{slide.image}}'{% else %}'{{slide.thumbnail}}'{% endif %}, '{{slide.title|e('js')}}')" />
 								</div>
 								<div class="span5 caption">
 									<h2>{{slide.title}}</h2>

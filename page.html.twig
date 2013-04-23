@@ -56,8 +56,6 @@
     	<body data-current-page="{{ currentPage }}" data-is-draft="{{ isDraft }}" data-current-workspace="{{ currentWorkspace }}" class="page page-index">
     {% endblock %}
     
-    {% block Modal %}{% endblock %}
-    
     {% block pageJavascript %}
     	<!-- Le javascript
     		================================================== -->
@@ -70,7 +68,6 @@
 		<script src="{{baseUrl}}/templates/rubedo-project-theme/js/jquery.quicksand.js"></script>
 		<script src="{{baseUrl}}/templates/rubedo-project-theme/js/script.js"></script>
 		<script src="{{baseUrl}}/templates/root/js/mailingList.js"></script>
-		<script src="{{baseUrl}}/templates/root/js/tree.js"></script>
     	
     	{% for file in js %}
     		<script type="text/javascript" src="{{baseUrl}}{{file}}"></script>
