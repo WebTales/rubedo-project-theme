@@ -11,13 +11,15 @@
 						
 						{% for slide in items %}
 							<div class="slide row-fluid" >
-								<div class="span7">
-									<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" />
-								</div>
-								<div class="span5 caption">
-									<h2>{{slide.title}}</h2>
-									{{slide.body | cleanHtml}}
-								</div>
+							    <a href="{{ displaySingleUrl(slide.id,null,singlePage) }}">
+    								<div class="span7">
+    									<img src="/dam?media-id={{slide.image}}" alt="{{slide.title}}" />
+    								</div>
+    								<div class="span5 caption">
+    									<h2>{{slide.title}}</h2>
+    									{{slide.body | cleanHtml}}
+    								</div>
+								</a>
 							</div>
 						{% endfor %}
 	

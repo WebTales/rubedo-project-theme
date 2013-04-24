@@ -157,3 +157,12 @@
 .form-horizontal, .form-actions {
 	margin-bottom: 0 !important;
 }
+
+[id^='calendar-'] table tbody tr td span {
+	padding: 2px 4px;
+}
+
+[id^='calendar-'] table {
+	margin-left: auto;
+	margin-right: auto;
+}
