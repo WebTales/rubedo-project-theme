@@ -148,8 +148,11 @@
 	background: #999;
 }
 .dropdown-menu .active-item {
-	color: #fff !important;
-	background-color:#56565B;
+	background-color:#eee !important;
+	text-shadow: none !important;
+}
+.dropdown-menu .active-item:hover {
+	background-color:#999 !important;
 	text-shadow: none !important;
 }
 
