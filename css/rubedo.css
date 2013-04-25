@@ -147,6 +147,11 @@
 .dropdown-menu > li {
 	background: #999;
 }
+.dropdown-menu .active-item {
+	color: #fff !important;
+	background-color:#56565B;
+	text-shadow: none !important;
+}
 
 .min {
 	font-size: 10px;
