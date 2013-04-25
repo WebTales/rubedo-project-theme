@@ -145,15 +145,27 @@
 }
 
 .dropdown-menu > li {
-	background: #999;
+	background: #414141;
+}
+.dropdown-menu >li a{
+	color:#999999 !important;
+}
+.dropdown-menu >li a:hover{
+	color:#fff !important;
 }
 .dropdown-menu .active-item {
-	background-color:#eee !important;
+	background-color:#545454 !important;
 	text-shadow: none !important;
+}
+.dropdown-menu .active-item a {
+	color:#fff !important;
 }
 .dropdown-menu .active-item:hover {
 	background-color:#999 !important;
 	text-shadow: none !important;
+}
+.divider{
+	background-color:#00adbb !important;
 }
 
 .min {
