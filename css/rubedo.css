@@ -174,7 +174,12 @@
 	color: #555;
 	border: thin solid #555;
 }
-
+.rubedo-form .control-label {
+float: left;
+width:auto !important;
+text-align:left;
+padding-top: 5px;
+}
 .form-horizontal, .form-actions {
 	margin-bottom: 0 !important;
 }
