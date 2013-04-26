@@ -5,7 +5,17 @@
 .navbar {
 	margin: 0;
 }
-
+.fine
+{
+  padding: 5px;
+  border: 1px solid #dcdcdc;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 10px #555;
+  -moz-box-shadow: 0px 1px 10px #555;
+ box-shadow: 0px 1px 10px #555;
+}
 .pers-navbar {
 	padding-top:10px;
 	padding-bottom: 10px;
