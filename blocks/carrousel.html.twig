@@ -17,7 +17,8 @@
     								</div>
     								<div class="span5 caption">
     									<h2>{{slide.title}}</h2>
-    									{{slide.body | cleanHtml}}
+    										<h4>{{ slide.date  |date("d/m/Y") }}</h4>
+    									{{slide.summary | cleanHtml}}
     								</div>
 								</a>
 							</div>
