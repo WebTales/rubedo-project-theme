@@ -30,7 +30,7 @@
 				    <li class="divider"></li>
 					{% for subpage in page.pages %}
 					<li
-						class="{% if subpage.id in rootline %}active{% endif %}">
+						class="{% if subpage.id in rootline %}active-item{% endif %}">
 						<a href="{{subpage.url}}">{{subpage.title}}</a>
 					</li> {% endfor %}
 

@@ -153,10 +153,11 @@ body #navigation .navbar-inner {
 	background: #999;
 }
 
-.dropdown-menu > li.active {
-	background: #777;
-}
 
+.dropdown-menu .active-item {
+	background-color: #545454 !important;
+	text-shadow: none !important;
+}
 
 .min {
 	font-size: 10px;
