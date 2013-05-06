@@ -32,7 +32,7 @@
 </div>
 {% if activeFacets|length > 0 %}
 <div class="navbar">
-	<div class="navbar-inner">
+	<div class="navbar-inner search-nav">
 		<p class="brand">Critères de recherche :&nbsp;&nbsp;
 		{% for facet in activeFacets %}
 		    {% if facet.id == 'type' or facet.id == 'damType' or facet.id == 'author' %}
