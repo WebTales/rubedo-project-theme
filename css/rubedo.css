@@ -210,6 +210,6 @@ padding-top: 5px;
 	border: 0 !important;
 }
 
-[id^='calendar-'] .table-bordered td:firstchild {
+[id^='calendar-'].table-bordered td:firstchild {
   border-left: 0 !important;
 }
