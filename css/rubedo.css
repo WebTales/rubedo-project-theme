@@ -218,6 +218,15 @@ padding-top: 5px;
   color: #000;
 }
 
-#navigation .navbar .modal-header {
+#navigation .header-hidden a.btn-primary {
+  color: #fff;
+}
+
+#navigation .navbar .modal-header, #navigation .navbar .modal-body {
   color: #000;
+}
+
+.btn-group .dropdown-toggle {
+	color: #000 !important;
+	text-shadow: none !important;
 }
