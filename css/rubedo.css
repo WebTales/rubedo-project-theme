@@ -213,3 +213,11 @@ padding-top: 5px;
 [id^='calendar-'] .table-bordered td:first-child, [id^='calendar-'] .table-bordered th:first-child {
   border-left: 0 !important;
 }
+
+#navigation .header-hidden a.btn {
+  color: #000;
+}
+
+#navigation .navbar .modal-header {
+  color: #000;
+}
