@@ -201,3 +201,15 @@ padding-top: 5px;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.nav-tabs.nav-stacked > li > a {
+  border: 0 !important;
+}
+
+[id^='calendar-'] .table-bordered {
+	border: 0 !important;
+}
+
+[id^='calendar-'] .table-bordered td:firstchild {
+  border-left: 0 !important;
+}
