@@ -134,7 +134,10 @@ body .static-banner .flex-control-nav li a.flex-active {
  *--------------------------------------------------
  */
 body #navigation .header-hidden {
-  background: #00adbb;
+  background: #404040;
+  background-image: url(../img/bg_noise-2.png);
+  background-position: left top;
+  background-repeat: repeat;
   /* primary colour */
 
 }
