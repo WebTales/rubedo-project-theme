@@ -4,36 +4,8 @@
 <br />
 <div class="navbar">
 	<div class="navbar-inner search-nav">
-		<a class="brand">{% if nbresults > 1 %}{{"there_are"|trans}}{% else %}{{"there_is"|trans}}{% endif %} <span class="badge badge-important">{{ total }}</span> {% if nbResults > 1 %}{{"result_pl"|trans}}{% else %}{{"result_sg"|trans}}{% endif %}</a>
+		<a class="brand">{% if total > 1 %}{{"there_are"|trans}}{% else %}{{"there_is"|trans}}{% endif %} <span class="badge badge-important">{{ total }}</span> {% if total > 1 %}{{"result_pl"|trans}}{% else %}{{"result_sg"|trans}}{% endif %}</a>
 		<ul class="nav pull-right">
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#"> {% if orderby == "_score" or orderby == "" %}
-				{{"order_by_relevance"|trans}}
-				{% endif %}
-				{% if orderby == "lastUpdateTime" %}
-				{{"order_by_date"|trans}}
-				{% endif %}
-				{% if orderby == "author" %}
-				{{"order_by_author"|trans}}
-				{% endif %} <b class="caret"></b> </a>
-				<ul class="dropdown-menu">
-					{% if orderby != "_score" %}
-					<li>
-						<a href="{{url({'orderby': '_score'})}}">{{"order_by_relevance"|trans}}</a>
-					</li>
-					{% endif %}
-					{% if orderby != "lastUpdateTime" %}
-					<li>
-						<a href="{{url({'orderby': 'lastUpdateTime'})}}">{{"order_by_date"|trans}}</a>
-					</li>
-					{% endif %}
-					{% if orderby != "author" %}
-					<li>
-						<a href="{{url({'orderby': 'author'})}}">{{"order_by_author"|trans}}</a>
-					</li>
-					{% endif %}
-				</ul>
-			</li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#"> {% if pagesize=="all" %}
 				{{"all_on_one_page"|trans}}
@@ -60,7 +32,7 @@
 </div>
 {% if activeFacets|length > 0 %}
 <div class="navbar">
-	<div class="navbar-inner">
+	<div class="navbar-inner search-nav">
 		<p class="brand">Critères de recherche :&nbsp;&nbsp;
 		{% for facet in activeFacets %}
 		    {% if facet.id == 'type' or facet.id == 'damType' or facet.id == 'author' %}
@@ -104,10 +76,6 @@
     			{% elseif facet.id == 'damType' %}
     			<p>
     				<i class="icon-file"></i> {{"dam_type"|trans}}
-    			</p>	
-    			{% elseif facet.id == 'author' %}
-    			<p>
-    				<i class="icon-user"></i> {{"author"|trans}}
     			</p>		
     			{% elseif facet.id == 'date' %}
     			<p>
@@ -159,18 +127,10 @@
 			{% if result.objectType == 'content' %}
 			<tr>
 				<td><h3><a href="{{ displaySingleUrl(result.id) }}">{{ result.title }}</a></h3>
-				<div class="progress progress-success" style="width:50px; float: left;">
-					<div class="bar {%if result.score >= 70%}bar-success{% else %} bar-warning{%endif%}" style="width: 100%;">
-						{{ result.score }}%
-					</div>
-				</div> &nbsp;<span class="label">{{ result.type }}</span>
-				<br />
-				<br />
 				{% if result.summary %}
 				<p>{{ result.summary|cleanHtml }}</p>
 				{% endif %}
-				<br />
-				{{"published_by"|trans}} <a href="{{url({'author' : result.author},true)}}">{{ result.authorName }}</a> {{"on"|trans}} {{ (result.lastUpdateTime)|localizeddate('long', 'none', lang) }}. </td>
+				</td>
 			</tr>
 			{% else %}
 			<tr>
@@ -185,8 +145,7 @@
 				{% if result.summary %}
 				<p><img src="/dam/get-thumbnail?media-id={{ result.id }}" alt='{{ result.title }}'> &nbsp;&nbsp;{{ result.summary|cleanHtml }}</p>
 				{% endif %}
-				<br />
-				{{"published_by"|trans}} <a href="{{url({'author' : result.author},true)}}">{{ result.authorName }}</a> {{"on"|trans}} {{ (result.lastUpdateTime)|localizeddate('long', 'none', lang) }}. </td>
+				</td>
 			</tr>
 			{% endif %}
 			{% endfor %}
