@@ -36,7 +36,7 @@
 }
 
 .navbar-inverse .brand {
-	color: #e32933;
+	color: #00adbb;
 }
 
 #btn-save {
@@ -74,11 +74,6 @@
 .btn-search {
 	border-radius: 0 2px 2px 0 !important;
 	margin-left: -4px;
-}
-
-body #navigation .navbar-inner {
-	
-	border-bottom-color: #e32933 !important;
 }
 
 .rss {
@@ -163,7 +158,15 @@ body #navigation .navbar-inner {
 	margin-bottom: 0 !important;
 }
 
+[id^='calendar-'] table tbody tr td span {
+	padding: 2px 4px;
+}
 
-.table-striped tbody > tr:nth-child(odd) > td, .table-striped tbody > tr:nth-child(odd) > th {
-	background-color: #DDD !important;
+[id^='calendar-'] table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.flag {
+	width: 30px;
 }
