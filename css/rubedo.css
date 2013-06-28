@@ -189,7 +189,7 @@ body #navigation .navbar-inner {
 }
 
 .post-title-small {
-	max-height: 20px;
+	max-height: 40px;
 	line-height: 20px !important;
 	overflow: hidden;
 }
