@@ -190,6 +190,7 @@ body #navigation .navbar-inner {
 
 .post-title-small {
 	max-height: 20px;
+	line-height: 20px !important;
 	overflow: hidden;
 }
 
