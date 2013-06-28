@@ -3,7 +3,7 @@
 	<header class="entry-header">
 		<h2 class="post-title-small" style="font-size: 18px;">
 			<a href='{{ displayUrl(content.id,"default",null,singlePage) }}' title='{{content.title}}'>
-    			{{content.title}} {% if content.date %}{% include "/root/blocks/fields/date.html.twig" with {"data": content, "key": "date"} %}{% endif %}
+    			{{content.title}} {% if content.date %}({% include "/root/blocks/fields/date.html.twig" with {"data": content, "key": "date"} %}){% endif %}
 			</a>
 		</h2>
 	</header>

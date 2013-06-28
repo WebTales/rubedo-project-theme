@@ -192,3 +192,8 @@ body #navigation .navbar-inner {
 	max-height: 40px;
 	overflow: hidden;
 }
+
+.entry-content {
+	height: 80px;
+	overflow: hidden;
+}
