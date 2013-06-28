@@ -183,17 +183,18 @@ body #navigation .navbar-inner {
 }
 
 .shortsingle-img-container {
-	height: 80px;
+	height: 64px;
 	margin-right:1em;
 	margin-bottom:1em;
 }
 
 .post-title-small {
-	max-height: 40px;
+	max-height: 20px;
 	overflow: hidden;
 }
 
 .entry-content {
-	height: 80px;
+	height: 64px;
 	overflow: hidden;
+	line-height: 16px;
 }
