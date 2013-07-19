@@ -126,7 +126,7 @@
 			{% for result in data %}
 			{% if result.objectType == 'content' %}
 			<tr>
-				<td><h3><a href="{{ displaySingleUrl(result.id) }}">{{ result.title }}</a></h3>
+				<td><h3><a href="{{ displayUrl(result.id, "default") }}">{{ result.title }}</a></h3>
 				{% if result.summary %}
 				<p>{{ result.summary|cleanHtml }}</p>
 				{% endif %}
