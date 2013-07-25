@@ -441,7 +441,7 @@ body ul.nav-tabs li.active a,
 body .tabbable > ul.nav-tabs li.active a:hover,
 body ul.nav-tabs li.active a:hover {
   color: #e32933;
-  border-top-color: #e32933;
+	background: #E6E6E6;
   /* primary colour */
 
 }

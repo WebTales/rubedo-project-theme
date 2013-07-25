@@ -1279,7 +1279,7 @@ ul.nav-tabs li.active a,
 .tabbable > ul.nav-tabs li.active a:hover,
 ul.nav-tabs li.active a:hover {
   color: #55a79a;
-  border-top: 4px solid #55a79a;
+  background: #E6E6E6;
 }
 .feature-tabs ul.nav-tabs {
   margin-right: 0;
