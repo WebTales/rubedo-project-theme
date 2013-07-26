@@ -53,7 +53,16 @@
     {% endblock %}
     
     {% block body %}
-    	<body data-current-page="{{ currentPage }}" data-is-draft="{{ isDraft }}" data-current-workspace="{{ currentWorkspace }}" class="page page-index">
+    	
+    	<body data-current-page="{{ currentPage }}" 
+          data-is-draft="{{ isDraft }}" 
+          data-current-workspace="{{ currentWorkspace }}" 
+          {% if disqusKey %}data-disqusKey="{{ disqusKey }}"{% endif %}
+          {% if googleMapsKey %}data-googleMapsKey="{{ googleMapsKey }}"{% endif %}
+          data-site-id="{{ siteID }}"
+          data-language="{{ lang }}"
+          class="page page-index"
+          >
     {% endblock %}
     
     {% block pageJavascript %}
