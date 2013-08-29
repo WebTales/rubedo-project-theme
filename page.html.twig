@@ -41,6 +41,7 @@
 	    <link href="{{baseUrl}}/templates/rubedo-project-theme/css/theme-style.css" rel="stylesheet">
 	    <link href="{{baseUrl}}/templates/rubedo-project-theme/css/colour-red.css" rel="stylesheet">
 	    <link href="{{baseUrl}}/templates/rubedo-project-theme/css/custom-style.css" rel="stylesheet">
+	    <link href="{{baseUrl}}/components/jschr/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet">
 	    
 	    {% for sheet in css %}
 	    	<link href="{{baseUrl}}{{sheet}}" rel="stylesheet" />
@@ -78,6 +79,8 @@
 		<script src="{{baseUrl}}/templates/rubedo-project-theme/js/script.js"></script>
 		<script src="{{baseUrl}}/templates/root/js/mailingList.js"></script>
 		<script src="{{baseUrl}}/templates/root/js/language.js"></script>
+		<script src="{{baseUrl}}/components/jschr/bootstrap-modal/js/bootstrap-modalmanager.js"></script>
+    	<script src="{{baseUrl}}/components/jschr/bootstrap-modal/js/bootstrap-modal.js"></script>
     	
     	{% for file in js %}
     		<script type="text/javascript" src="{{baseUrl}}{{file}}"></script>
