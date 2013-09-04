@@ -1,92 +1,122 @@
 {% extends "root/blocks/contentlist.html.twig" %} 
 {% block mainContent %}
-
 <br />
-<div class="navbar">
-	<div class="navbar-inner search-nav">
-		<a class="brand">{% if total > 1 %}{{"there_are"|fotrans}}{% else %}{{"there_is"|fotrans}}{% endif %} <span class="badge badge-important">{{ total }}</span> {% if total > 1 %}{{"result_pl"|fotrans}}{% else %}{{"result_sg"|fotrans}}{% endif %}</a>
+<div class="navbar" id="searchpage" data-searchparams='{{ searchParams }}'>
+	<div class="navbar-inner">
+		<a class="brand">{% if total > 1 %}{{"Search.ThereAre"|fotrans}}{% else %}{{"Search.ThereIs"|fotrans}}{% endif %} <span class="badge badge-important">{{ total }}</span> {% if total > 1 %}{{"Search.Results"|fotrans}}{% else %}{{"Search.Result"|fotrans}}{% endif %}</a>
 		<ul class="nav pull-right">
 			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"> {% if orderby == "_score" or orderby == "" %}
+				{{"Search.Label.OrderByRelevance"|fotrans}}
+				{% endif %}
+				{% if orderby == "lastUpdateTime" %}
+				{{"Search.Label.OrderByDate"|fotrans}}
+				{% endif %}
+				{% if orderby == "createUser.fullName" %}
+				{{"Search.Label.OrderByAuthor"|fotrans}}
+				{% endif %} <b class="caret"></b> </a>
+				<ul class="dropdown-menu">
+					{% if orderby != "_score" %}
+					<li>
+						<a href="{{url({'orderby': '_score'})}}">{{"Search.Label.OrderByRelevance"|fotrans}}</a>
+					</li>
+					{% endif %}
+					{% if orderby != "lastUpdateTime" %}
+					<li>
+						<a href="{{url({'orderby': 'lastUpdateTime'})}}">{{"Search.Label.OrderByDate"|fotrans}}</a>
+					</li>
+					{% endif %}
+					{% if orderby != "createUser.fullName" %}
+					<li>
+						<a href="{{url({'orderby': 'createUser.fullName','orderbyDirection': 'asc'})}}">{{"Search.Label.OrderByAuthor"|fotrans}}</a>
+					</li>
+					{% endif %}
+				</ul>
+			</li>
+			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#"> {% if pagesize=="all" %}
-				{{"all_on_one_page"|fotrans}}
+				{{"Blocks.Search.Label.AllInOnePage"|fotrans}}
 				{% else %}
-				{{ pagesize }} {{"by_page"|fotrans}}
+				{{ pagesize }} {{"Blocks.Search.Label.ByPage"|fotrans}}
 				{% endif %} <b class="caret"></b> </a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="{{url({'pagesize': '10'})}}">10 {{"by_page"|fotrans}}</a>
+						<a href="{{url({'pagesize': '10'})}}">10 {{"Blocks.Search.Label.ByPage"|fotrans}}</a>
 					</li>
 					<li>
-						<a href="{{url({'pagesize': '20'})}}">20 {{"by_page"|fotrans}}</a>
+						<a href="{{url({'pagesize': '20'})}}">20 {{"Blocks.Search.Label.ByPage"|fotrans}}</a>
 					</li>
 					<li>
-						<a href="{{url({'pagesize': '50'})}}">50 {{"by_page"|fotrans}}</a>
+						<a href="{{url({'pagesize': '50'})}}">50 {{"Blocks.Search.Label.ByPage"|fotrans}}</a>
 					</li>
 					<li>
-						<a href="{{url({'pagesize': 'all'})}}">{{"all_on_one_page"|fotrans}}</a>
+						<a href="{{url({'pagesize': 'all'})}}">{{"Blocks.Search.Label.AllInOnePage"|fotrans}}</a>
 					</li>
 				</ul>
 			</li>
 		</ul>
 	</div>
 </div>
+
 {% if activeFacets|length > 0 %}
+{% set activeFacetsList = [] %}
+{% if displayMode != 'checkbox' %}
 <div class="navbar">
-	<div class="navbar-inner search-nav">
-		<p class="brand">Critères de recherche :&nbsp;&nbsp;
+	<div class="navbar-inner">
+		<p class="brand">{{ "Blocks.Search.Label.SearchCriteria" | fotrans }} :&nbsp;&nbsp;
+{% endif %}
 		{% for facet in activeFacets %}
-		    {% if facet.id == 'type' or facet.id == 'damType' or facet.id == 'author' %}
-                {% for term in facet.terms %}
-	                <a href="{{url({(facet.id): null})}}" >
-					<span class="badge badge-info"><i class="icon-remove-sign"></i> {{ term.label }}</span>
-				    </a>
-		        {% endfor %}
-            {% else %}
+
                 {% for term in facet.terms %}
                     {% if not (constrainToSite and facet.id == 'navigation' and term.term == currentSite) %}
-		            <a href="{{url({(facet.id): term.term},'sub')}}" >
-				        <span class="badge badge-info"><i class="icon-remove-sign"></i> {{ term.label }}</span>
+                    {% set activeFacetsList = activeFacetsList|merge([term.term]) %}
+                    {% if displayMode != 'checkbox' %}
+		            <a {% if term.term not in facetsToHide %}href="{{url({(facet.id): term.term},'sub')}}"{% endif %} >
+				        <span class="badge badge-info">{% if term.term not in facetsToHide %}<i class="icon-remove-sign"></i>{% endif %} {{ term.label }}</span>
 			        </a>
 			        {% endif %}
+			        {% endif %}
 		        {% endfor %}
-            {% endif %}
+
 		        
 		{% endfor %}
+{% if displayMode != 'checkbox' %}
 		</p>
 	</div>
 </div>
 {% endif %}
+{% endif %}
 <div class="row-fluid">
-	<div class="span3 well well-large search-menu">
+	<div class="span3 well well-large" id="inputSearchBlock">
 		<p>
-			<i class="icon-search"></i> {{"full_text_search"|fotrans}}
+			<i class="icon-search"></i> {{"Search.Label.FullTextSearch"|fotrans}}
 		</p>
 			<form class="form-search" action="{{url({},true)}}">
-				<input type="text" class="input-medium search-query" name="query" size="10" value="{{ query }}" placeholder="{{"search"|fotrans}}">
+				<input type="text" class="input-medium search-query {%  if autoComplete %}typeahead{%  endif %}" autocomplete="off" name="query" size="10" value="{{ query }}" placeholder="{{"Search.Label.Search"|fotrans}}">
 			</form>
 		
 		{% for facet in facets %}
 
-			{% if facet.terms|length > 0 %}
-
+			{% if facet._type == 'terms' and facet.terms|length > 0 %}
+                
     			{% if facet.id == 'type' %}
     			<p>
-    				<i class="icon-file"></i> {{"content_type"|fotrans}}
+    				<i class="icon-file"></i> {{ "Search.Facets.Label.ContentType"|fotrans }}
     			</p>	
     			{% elseif facet.id == 'damType' %}
     			<p>
-    				<i class="icon-file"></i> {{"dam_type"|fotrans}}
-    			</p>		
-    			{% elseif facet.id == 'date' %}
-    			<p>
-    				<i class="icon-calendar"></i> {{"date"|fotrans}}
+    				<i class="icon-file"></i> {{ "Search.Facets.Label.MediaType"|fotrans }}
     			</p>	
+    			{% elseif facet.id == 'author' %}
+    			<p>
+    				<i class="icon-user"></i> {{ "Search.Facets.Label.Author"|fotrans }}
+    			</p>		
     			{% else %}
     			<p>
-    				<i class="icon-tags"></i> {{facet.label}}
+    				<i class="icon-tags"></i> {{ facet.label }}
     			</p>			
     			{% endif %}	
-    	        {% if facet.id == 'type' or facet.id == 'damType' or facet.id == 'author' or facet.id == 'date' %}
+    	        {% if facet.id == 'date' %}
     	          <ul>
     				{% for term in facet.terms %}
     				
@@ -100,25 +130,55 @@
     	        <ul>
     				{% for term in facet.terms %}
     				{% if not (constrainToSite and facet.id == 'navigation' and term.term == currentSite) %}
+    				{% if displayMode == 'checkbox' %}
+    				<label class="checkbox">
+      					<input type="checkbox" class="facetBox" data-target="{{url({(facet.id) : [term.term]},'add')}}" data-target-off="{{url({(facet.id) : [term.term]},'sub')}}" {% if term.term in activeFacetsList %}checked{% endif %}> {{ term.label }} ({{ term.count }})
+    				</label>
+    				{% else %}
     				<li>
     					<a href="{{url({(facet.id) : [term.term]},'add')}}">{{ term.label }} ({{ term.count }})</a>
     				</li>
     				{% endif %}
+    				{% endif %}
     				{% endfor %}
 			    </ul>
     					
-    			{% endif %}	
-			
+    			{% endif %}			
 			
 			{% endif %}
+			
+			{% if facet._type == 'range' and facet.ranges|length > 0 %}
+    			{% if facet.id == 'date' %}
+    				{% for range in facet.ranges %}
+
+    						{% if loop.first %}
+     							<p>
+    								<i class="icon-calendar"></i> {{"Search.Facets.Label.ModificationDate"|fotrans}}
+    							</p>
+    	        				<ul>
+    	        			{% endif %}
+                            {% if displayMode == 'checkbox' %}
+            				<label class="checkbox">
+              					<input type="checkbox" class="facetBox" data-target="{{url({lastupdatetime : range.from})}}" data-target-off="{{url({lastupdatetime : range.from},'sub')}}" {% if range.from in activeFacetsList %}checked{% endif %}> {{ range.label }} ({{ range.count }})
+            				</label>                            
+                            {% else %}
+    						<li>
+    							<a href="{{url({lastupdatetime : range.from})}}">{{ range.label }} ({{ range.count }})</a>
+    						</li>
+                            {% endif %}
+
+    				{% endfor %}
+			    	</ul>
+    			{% endif %}			
+			{% endif %}		
 		
 		{% endfor %}
 		
 	</div>
-	<div class="span8">
+	<div class="span9">
 		{% if total == 0 %}
 		<div class="alert alert-error">
-			{{"no_result"|fotrans}}
+			{{"Search.Label.NoResults"|fotrans}}
 		</div>
 		{% else %}
 
@@ -126,17 +186,18 @@
 			{% for result in data %}
 			{% if result.objectType == 'content' %}
 			<tr>
-				<td><h3><a href="{{ displayUrl(result.id, "default") }}">{{ result.title }}</a></h3>
+				<td><h3><a href="{{ displayUrl(result.id,"default",null,singlePage) }}">{{ result.title }}</a></h3>
 				{% if result.summary %}
 				<p>{{ result.summary|cleanHtml }}</p>
 				{% endif %}
-				</td>
+				<br />
+				{{"Contents.PublishedBy"|fotrans}} <a href="{{url({'author' : result.author},true)}}">{{ result.authorName }}</a> {{"Contents.The"|fotrans}} {{ (result.lastUpdateTime)|localizeddate('long', 'none', lang) }}. </td>
 			</tr>
 			{% else %}
 			<tr>
 				<td><h3><a href="/dam?media-id={{ result.id }}">{{ result.title }}</a></h3>
-				<div class="progress progress-success" style="width:50px; float: left;">
-					<div class="bar {%if result.score >= 70%}bar-success{% else %} bar-warning{%endif%}" style="width: 100%;">
+				<div class="progress progress-success search-progress">
+					<div class="bar {%if result.score >= 70%}bar-success{% else %} bar-warning{%endif%}" style="width: 100%">
 						{{ result.score }}%
 					</div>
 				</div> &nbsp;<span class="label">{{ result.type }}</span>
@@ -145,7 +206,8 @@
 				{% if result.summary %}
 				<p><img src="/dam/get-thumbnail?media-id={{ result.id }}" alt='{{ result.title }}'> &nbsp;&nbsp;{{ result.summary|cleanHtml }}</p>
 				{% endif %}
-				</td>
+				<br />
+				{{"Contents.PublishedBy"|fotrans}} <a href="{{url({'author' : result.author},true)}}">{{ result.authorName }}</a> {{"Contents.The"|fotrans}} {{ (result.lastUpdateTime)|localizeddate('long', 'none', lang) }}. </td>
 			</tr>
 			{% endif %}
 			{% endfor %}
@@ -156,15 +218,15 @@
 		{%set lastWrap=(pagecount-1)-current%}
 			<ul>
 			<li class="disabled">
-					<a href="#">Page {{ current+1 }} {{"on"|fotrans}} {{ pagecount }}</a>
+					<a href="#">{{"Search.Label.Page"|fotrans}} {{ current+1 }} {{"Contents.Of"|fotrans}} {{ pagecount }}</a>
 				</li>
 				{% if current==0 %}
 				<li class="disabled">
-					<a href="#"><<</a>
+					<a href="#">&lt;&lt;</a>
 				</li>
 				{% else %}
 				<li>
-					<a href="{{url({'pager': current-1})}}"><<</a>
+					<a href="{{url({'pager': current-1})}}">&lt;&lt;</a>
 				</li>
 				{% endif %}
 				{%if current<wrap+1 or limit<10%}
@@ -188,11 +250,11 @@
 				{%endif%}
 				{% if current==pagecount-1%}
 				<li class="disabled">
-					<a href="#">>></a>
+					<a href="#">&gt;&gt;</a>
 				</li>
 				{% else %}
 				<li>
-					<a href="{{url({'pager': current+1})}}">>></a>
+					<a href="{{url({'pager': current+1})}}">&gt;&gt;</a>
 				</li>
 				{% endif %}
 			</ul>
