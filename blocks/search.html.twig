@@ -4,26 +4,26 @@
 <br />
 <div class="navbar">
 	<div class="navbar-inner search-nav">
-		<a class="brand">{% if total > 1 %}{{"there_are"|trans}}{% else %}{{"there_is"|trans}}{% endif %} <span class="badge badge-important">{{ total }}</span> {% if total > 1 %}{{"result_pl"|trans}}{% else %}{{"result_sg"|trans}}{% endif %}</a>
+		<a class="brand">{% if total > 1 %}{{"there_are"|fotrans}}{% else %}{{"there_is"|fotrans}}{% endif %} <span class="badge badge-important">{{ total }}</span> {% if total > 1 %}{{"result_pl"|fotrans}}{% else %}{{"result_sg"|fotrans}}{% endif %}</a>
 		<ul class="nav pull-right">
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#"> {% if pagesize=="all" %}
-				{{"all_on_one_page"|trans}}
+				{{"all_on_one_page"|fotrans}}
 				{% else %}
-				{{ pagesize }} {{"by_page"|trans}}
+				{{ pagesize }} {{"by_page"|fotrans}}
 				{% endif %} <b class="caret"></b> </a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="{{url({'pagesize': '10'})}}">10 {{"by_page"|trans}}</a>
+						<a href="{{url({'pagesize': '10'})}}">10 {{"by_page"|fotrans}}</a>
 					</li>
 					<li>
-						<a href="{{url({'pagesize': '20'})}}">20 {{"by_page"|trans}}</a>
+						<a href="{{url({'pagesize': '20'})}}">20 {{"by_page"|fotrans}}</a>
 					</li>
 					<li>
-						<a href="{{url({'pagesize': '50'})}}">50 {{"by_page"|trans}}</a>
+						<a href="{{url({'pagesize': '50'})}}">50 {{"by_page"|fotrans}}</a>
 					</li>
 					<li>
-						<a href="{{url({'pagesize': 'all'})}}">{{"all_on_one_page"|trans}}</a>
+						<a href="{{url({'pagesize': 'all'})}}">{{"all_on_one_page"|fotrans}}</a>
 					</li>
 				</ul>
 			</li>
@@ -59,10 +59,10 @@
 <div class="row-fluid">
 	<div class="span3 well well-large search-menu">
 		<p>
-			<i class="icon-search"></i> {{"full_text_search"|trans}}
+			<i class="icon-search"></i> {{"full_text_search"|fotrans}}
 		</p>
 			<form class="form-search" action="{{url({},true)}}">
-				<input type="text" class="input-medium search-query" name="query" size="10" value="{{ query }}" placeholder="{{"search"|trans}}">
+				<input type="text" class="input-medium search-query" name="query" size="10" value="{{ query }}" placeholder="{{"search"|fotrans}}">
 			</form>
 		
 		{% for facet in facets %}
@@ -71,15 +71,15 @@
 
     			{% if facet.id == 'type' %}
     			<p>
-    				<i class="icon-file"></i> {{"content_type"|trans}}
+    				<i class="icon-file"></i> {{"content_type"|fotrans}}
     			</p>	
     			{% elseif facet.id == 'damType' %}
     			<p>
-    				<i class="icon-file"></i> {{"dam_type"|trans}}
+    				<i class="icon-file"></i> {{"dam_type"|fotrans}}
     			</p>		
     			{% elseif facet.id == 'date' %}
     			<p>
-    				<i class="icon-calendar"></i> {{"date"|trans}}
+    				<i class="icon-calendar"></i> {{"date"|fotrans}}
     			</p>	
     			{% else %}
     			<p>
@@ -118,7 +118,7 @@
 	<div class="span8">
 		{% if total == 0 %}
 		<div class="alert alert-error">
-			{{"no_result"|trans}}
+			{{"no_result"|fotrans}}
 		</div>
 		{% else %}
 
@@ -156,7 +156,7 @@
 		{%set lastWrap=(pagecount-1)-current%}
 			<ul>
 			<li class="disabled">
-					<a href="#">Page {{ current+1 }} {{"on"|trans}} {{ pagecount }}</a>
+					<a href="#">Page {{ current+1 }} {{"on"|fotrans}} {{ pagecount }}</a>
 				</li>
 				{% if current==0 %}
 				<li class="disabled">
